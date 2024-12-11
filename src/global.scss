@@ -45,6 +45,7 @@
   border:none;
 }
 :root{
+  width: 100%;
   --ion-color-primary: #79a79b;
 	--ion-color-primary-rgb: 157,173,200;
 	--ion-color-primary-contrast: #000000;
@@ -69,6 +70,7 @@
 
 }
 :host {
+  width: 100%;
   --ion-color-primary: #79a79b;
 	--ion-color-primary-rgb: 157,173,200;
 	--ion-color-primary-contrast: #000000;
@@ -273,7 +275,7 @@ fieldset {
     flex-wrap: nowrap;
     width: 98%;
     background-color: transparent;
-    border: 2px solid rgb(179, 166, 190);
+   // border: 2px solid rgb(179, 166, 190);
     border-radius: 7px;
     margin: auto;
     padding: auto;
@@ -283,12 +285,16 @@ fieldset {
     overflow:inherit;
     vertical-align: middle;
   }
+  ion-row {
+    display: flex;
+        flex-wrap: nowrap;
+  }
 
   ion-col {
     //background-color: #3ea3b1;
     
     background-color: #e0c6ac;
-    border: solid 1px hsl(33, 40%, 65%);
+    border: solid 1px hsl(4, 40%, 65%);
     --background: linear-gradient(135deg, var(--ion-color-light), var(--ion-color-medium));
     color: #000000;
     display: flex;
