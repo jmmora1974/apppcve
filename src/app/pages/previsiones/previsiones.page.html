@@ -69,7 +69,8 @@
                 name="help-outline"></ion-icon></ion-button>
             <ion-popover trigger="trigger-button">
               <ng-template>
-                <ion-content class="ion-padding"><ion-img src="../../../../assets/tipoVivienda2.png"></ion-img></ion-content>
+                <ion-content class="ion-padding"><ion-img
+                    src="../../../../assets/tipoVivienda2.png"></ion-img></ion-content>
               </ng-template>
             </ion-popover>
           </div>
@@ -99,8 +100,8 @@
               <ion-col> {{element.potIrve}} kW </ion-col>
               <ion-col>Total conjunto viviendas:
                 {{((element.numViviendas-element.conIrve!)*element.tipo.potencia+(element.conIrve!*(element.tipo.potencia+0.3*element.potIrve!))).toFixed(3)}}</ion-col>
-              <ion-col><ion-button color="tertiary" class="btnEliminatd"  >
-                  <ion-icon slot="icon-only" name="trash" ></ion-icon></ion-button>
+              <ion-col><ion-button color="tertiary" class="btnEliminatd">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon></ion-button>
               </ion-col>
 
             </ion-row>
@@ -130,10 +131,12 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-          <ion-button id="btnAgregarViv" class="btn btnAgregar " color="warning"
-              (click)="agregarVivienda()" expand="block" shape="round">
-              Agregar viviendas / Irves
-            </ion-button>
+
+          <ion-button id="btnAgregarViv" class="btn btnAgregar " color="warning" (click)="agregarVivienda()"
+            expand="block" shape="round">
+            Agregar viviendas / Irves
+          </ion-button>
+
         </div>
       </ion-accordion>
 
@@ -157,13 +160,14 @@
           </div>
         </ion-item>
 
-        <div  class="ion-padding" slot="content">
-          
+        <div class="ion-padding" slot="content">
+
           <!----  listado ascensor -->
           <ion-grid>
+
+            @for (ascItem of this.previsionesService.listaAscensores(); track ascItem.id) {
             <ion-row>
-              @for (ascItem of this.previsionesService.listaAscensores(); track ascItem.id) {
-              <ion-col size="12" size-xs="12" size-sm="6" size-md="4" size-lg="3">
+              <ion-col>
                 <img alt="Icono Ascensor" src="../../../assets/icon/ascensor.png" height="50px"
                   class="ion-float-right" />
                 {{ascItem.numAscensores}} ascensores tipo {{ascItem.tipoMotorAsc}} de {{ascItem.potenciaMotorAsc}}
@@ -173,17 +177,19 @@
                     name="trash"></ion-icon>
                 </div>
               </ion-col>
-              } @empty {
-              <li>No hay ningún ascensor definido.</li>
-              }
             </ion-row>
+            } @empty {
+            <li>No hay ningún ascensor definido.</li>
+            }
+
           </ion-grid>
 
           <!---Listado de guupo motor  -->
           <ion-grid>
+
+            @for (gmItem of this.previsionesService.listaGMotor(); track gmItem.id) {
             <ion-row>
-              @for (gmItem of this.previsionesService.listaGMotor(); track gmItem.id) {
-              <ion-col size="12" size-xs="12" size-sm="6" size-md="4" size-lg="3">
+              <ion-col>
                 <img alt="Icono Grupo Motor" src="../../../assets/icon/grupomotor3.png" height="50px"
                   class="ion-float-right" />
                 {{gmItem.numGMotores}} grupo motor de {{gmItem.potenciaGMotor}} {{gmItem.medidaPotencia}}.
@@ -192,16 +198,17 @@
                     name="trash"></ion-icon>
                 </div>
               </ion-col>
-              } @empty {
-              <li>No hay ningún grupo motor definido.</li>
-              }
             </ion-row>
+            } @empty {
+            <li>No hay ningún grupo motor definido.</li>
+            }
+
           </ion-grid>
-           <!---Listado alumbrado  -->
+          <!---Listado alumbrado  -->
           <ion-grid>
-            <ion-row>
-              @for (itemAlum of this.previsionesService.listaAlumbrado(); track itemAlum.id) {
-              <ion-col size="12" size-xs="12" size-sm="6" size-md="4" size-lg="3">
+
+            @for (itemAlum of this.previsionesService.listaAlumbrado(); track itemAlum.id) {
+            <ion-row> <ion-col>
                 <img alt="Icono Alumbrado" src="../../../assets/icon/Alumbrado1.png" height="50px"
                   class="ion-float-left" />
                 id:{{itemAlum.id}} - {{itemAlum.mtsAlumbrado}} mts de {{itemAlum.tipoAlumbrado!.potAlum}}
@@ -214,17 +221,18 @@
                   <ion-icon name="trash"></ion-icon>
                 </div>
               </ion-col>
-              } @empty {
-              <li>No hay ningún alumbrado definido.</li>
-              }
             </ion-row>
+            } @empty {
+            <li>No hay ningún alumbrado definido.</li>
+            }
+
           </ion-grid>
-          <ion-button id="btnAgregarSerGen" class="btn btnAgregar " color="warning"
-          (click)="agregarServGrales()" expand="block" shape="round">
-          Agregar Servicios Generales
-        </ion-button>
+          <ion-button id="btnAgregarSerGen" class="btn btnAgregar " color="warning" (click)="agregarServGrales()"
+            expand="block" shape="round">
+            Agregar Servicios Generales
+          </ion-button>
         </div>
-       
+
       </ion-accordion>
 
       <ion-accordion value="accPLoc">
@@ -239,18 +247,19 @@
               </ng-template>
             </ion-popover>
           </div>
-          
+
           <h6 slot="end">Ploc: {{this.previsionesService.Ploc()|number}} kW</h6>
 
 
         </ion-item>
         <div slot="content">
-          
+
 
           <ion-grid>
+
+            @for (locItem of this.previsionesService.listaLocales(); track locItem.id) {
             <ion-row>
-              @for (locItem of this.previsionesService.listaLocales(); track locItem.id) {
-              <ion-col size="12" size-xs="12" size-sm="6" size-md="4" size-lg="3">
+              <ion-col>
                 <img alt="Icono Local" src="../../../../assets/local.jpg" height="50px" class="ion-float-right" />
                 {{locItem.numLocales}} locales de {{locItem.mtsLocal}} con Potencia de {{locItem.potLocal}} kW.
                 Total {{locItem.totalPotenciaLocalkW |number}} kW.
@@ -258,22 +267,23 @@
                   <ion-icon name="trash"></ion-icon>
                 </div>
               </ion-col>
-              } @empty {
-              <li>No hay ningún local definido.</li>
-              }
             </ion-row>
+            } @empty {
+            <li>No hay ningún local definido.</li>
+            }
+
           </ion-grid>
           <ion-button id="btnAgregarLocales" class="btn ion-button btnAgregar" color="warning"
-              (click)="agregarLocales()" expand="block" shape="round">
-              Agregar Locales
-            </ion-button>
+            (click)="agregarLocales()" expand="block" shape="round">
+            Agregar Locales
+          </ion-button>
         </div>
       </ion-accordion>
 
       <ion-accordion value="accPGar">
         <ion-item slot="header" color="secondary">
           <h4>Prevision Garage</h4>
-          
+
           <h6 slot="end">Pgar: {{this.previsionesService.PGar()|number}} kW</h6>
           <div>
             <ion-button id="infoGarages" shape="round" color="warning"><ion-icon
@@ -287,10 +297,10 @@
         </ion-item>
         <div slot="content">
           <ion-grid>
-           
-              @for (garItem of this.previsionesService.listaGarages(); track garItem.id) {
-                <ion-row>
-              <ion-col >
+
+            @for (garItem of this.previsionesService.listaGarages(); track garItem.id) {
+            <ion-row>
+              <ion-col>
                 <img alt="Icono Garage" src="../../../../assets/garaje.png" height="50px" class="ion-float-right" />
                 <p> {{garItem.numPlantas}} plantas de {{garItem.mtsGarage}} mts2 con Potencia de {{garItem.potGarage}}
                   kW.
@@ -301,15 +311,15 @@
                 </div>
               </ion-col>
             </ion-row>
-              } @empty {
-              <li>No hay ningún local definido.</li>
-              }
-            
+            } @empty {
+            <li>No hay ningún local definido.</li>
+            }
+
           </ion-grid>
-          <ion-button id="btnAgregarGarage" color="warning" class="btn ion-button btnAgregar"
-              (click)="agregarGarage()" expand="block" shape="round">
-              Agregar Garage
-            </ion-button>
+          <ion-button id="btnAgregarGarage" color="warning" class="btn ion-button btnAgregar" (click)="agregarGarage()"
+            expand="block" shape="round">
+            Agregar Garage
+          </ion-button>
         </div>
       </ion-accordion>
 
@@ -330,9 +340,33 @@
             <ion-label>={{(irve.cantidad*irve.potencia)|number}} kW</ion-label>
 
           </ion-item>
-        </div>
+        
+        <ion-grid>
 
+          @for (irve of this.previsionesService.listaIrve(); track irve.id) {
+          <ion-row>
+            <ion-col>
+              <img alt="Icono Irve" src="../../../assets/icon/estacion-de-carga.png" height="50px" class="ion-float-right" />
+              
+              <ion-label>{{irve.id}}</ion-label>
+              <ion-label>Num Irves :{{irve.cantidad}}</ion-label>
+              <ion-label>Potencia : {{irve.potencia}}</ion-label>
+              <ion-label>Potencia vivienda :{{irve.tipoVivienda.potencia}} kW</ion-label>
+              <ion-label>={{(irve.cantidad*irve.potencia)|number}} kW</ion-label>
 
+              
+              <ion-button class="btn ion-button btnEliminar" (click)="utilService.showAlert('Info Irve','Debes eliminar al vivienda')" >
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          } @empty {
+          <li>No hay ningún local definido.</li>
+          }
+
+        </ion-grid>
+
+      </div>
       </ion-accordion>
     </ion-accordion-group>
   </section>

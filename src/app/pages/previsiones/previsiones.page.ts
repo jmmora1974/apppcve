@@ -1,6 +1,7 @@
 import {CUSTOM_ELEMENTS_SCHEMA, Component, inject, OnInit, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonGrid, IonRow, IonIcon,IonButton, IonPopover, IonImg, IonAccordion, IonInput, IonLabel  } from '@ionic/angular/standalone';
 import { PrevisionesService } from '../../services/previsiones.service';
 import { IAlumbrado } from '../../models/ialumbrado';
@@ -15,7 +16,8 @@ import { ModalLocalesComponent } from './modal-locales/modal-locales.component';
 import { ModalServGeneralesComponent } from './modal-serv-generales/modal-serv-generales.component';
 import { ModalController ,  IonActionSheet  } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { alarm, logoIonic, trash, helpOutline, heart } from 'ionicons/icons';
+import { alarm, logoIonic, trash, helpOutline, heart, add } from 'ionicons/icons';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-previsiones',
@@ -29,8 +31,10 @@ import { alarm, logoIonic, trash, helpOutline, heart } from 'ionicons/icons';
   imports: [IonRow, IonGrid, IonItem, IonGrid, IonRow, IonIcon, IonContent,
     IonHeader, IonTitle, IonToolbar, FormsModule, CommonModule, IonButton,IonPopover,IonImg, IonAccordion,IonInput, IonLabel ]
 })
+
 export class PrevisionesPage  implements OnInit  {
   previsionesService = inject(PrevisionesService);
+  utilService = inject(UtilsService);
   //popoverController = inject(PopoverController );
   ngOnInit (){}
 
@@ -211,7 +215,7 @@ export class PrevisionesPage  implements OnInit  {
   constructor(
 
     private modalCtrl: ModalController
-  ) { addIcons({helpOutline,heart,trash,alarm,logoIonic});}
+  ) { addIcons({helpOutline,trash,add,heart,alarm,logoIonic});}
 
 
 
