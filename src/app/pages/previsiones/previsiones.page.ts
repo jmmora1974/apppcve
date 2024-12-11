@@ -1,7 +1,7 @@
 import {CUSTOM_ELEMENTS_SCHEMA, Component, inject, OnInit, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonGrid, IonRow, IonIcon,IonButton, IonPopover, IonImg, IonAccordion  } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonGrid, IonRow, IonIcon,IonButton, IonPopover, IonImg, IonAccordion, IonInput, IonLabel  } from '@ionic/angular/standalone';
 import { PrevisionesService } from '../../services/previsiones.service';
 import { IAlumbrado } from '../../models/ialumbrado';
 import { IAscensor } from '../../models/iascensor';
@@ -27,7 +27,7 @@ import { alarm, logoIonic, trash, helpOutline, heart } from 'ionicons/icons';
     NO_ERRORS_SCHEMA
   ],
   imports: [IonRow, IonGrid, IonItem, IonGrid, IonRow, IonIcon, IonContent,
-    IonHeader, IonTitle, IonToolbar, FormsModule, CommonModule, IonButton,IonPopover,IonImg, IonAccordion ]
+    IonHeader, IonTitle, IonToolbar, FormsModule, CommonModule, IonButton,IonPopover,IonImg, IonAccordion,IonInput, IonLabel ]
 })
 export class PrevisionesPage  implements OnInit  {
   previsionesService = inject(PrevisionesService);
