@@ -332,15 +332,7 @@
 
         </ion-item>
         <div slot="content">
-          <ion-item *ngFor="let irve of previsionesService.listaIrve()">
-            <ion-label>{{irve.id}}</ion-label>
-            <ion-label>Num Irves :{{irve.cantidad}}</ion-label>
-            <ion-label>Potencia : {{irve.potencia}}</ion-label>
-            <ion-label>Potencia vivienda :{{irve.tipoVivienda.potencia}} kW</ion-label>
-            <ion-label>={{(irve.cantidad*irve.potencia)|number}} kW</ion-label>
-
-          </ion-item>
-        
+          
         <ion-grid>
 
           @for (irve of this.previsionesService.listaIrve(); track irve.id) {
