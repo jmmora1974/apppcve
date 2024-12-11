@@ -1,0 +1,16 @@
+
+#secCabecera{
+    position: sticky ;
+    z-index: 1000;
+    top: 0;
+    
+  }
+
+  #gripCabecera {
+    background-color:  var(--ion-color-light);;
+    display: inline-block;
+    width: 100%;
+    ion-col{
+      background-color: inherit;
+    }
+  }

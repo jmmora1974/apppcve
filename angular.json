@@ -16,21 +16,19 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "www",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "browser": "src/main.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
-              }
-            ],
+            "assets": [{
+              "glob": "**/*",
+              "input": "src/assets",
+              "output": "assets"
+            }],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": []
           },
@@ -57,9 +55,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -80,7 +76,7 @@
               "buildTarget": "app:build:development"
             },
             "ci": {
-              "progress": false
+             
             }
           },
           "defaultConfiguration": "development"
@@ -99,12 +95,17 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
-              }
+            "assets": [{
+              "glob": "**/*",
+              "input": "src/assets",
+              "output": "assets"
+            },
+            {
+              "glob": "**/*.svg",
+              "input": "node_modules/ionicons/dist/ionicons/svg",
+              "output": "./svg"
+            }
+             
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": []
@@ -126,7 +127,10 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ],
+    "analytics": "4befcd62-4003-4256-91c4-7cdb9ea56160"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

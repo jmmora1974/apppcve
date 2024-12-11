@@ -1,0 +1,216 @@
+<ion-header [translucent]="true">
+ 
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      
+      <ion-button color="danger" (click)="cancel()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
+    </ion-buttons>
+        <ion-title>Previsión Servicios Generales </ion-title>
+        <ion-buttons slot="end">
+          <ion-button color="danger" size="large"  (click)="cancel()"><ion-icon name="close-outline"></ion-icon></ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Servicios Generales</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <section class="flex-container boxAsc" collapse="condense">
+
+    <form (ngSubmit)="agregarAscensor()" #formAscensor="ngForm" class="flex">
+
+      <fieldset>
+        <legend>Ascensores</legend>
+        <div class="form-group">
+          <ion-item>
+            <div class="flex-container">
+              <label for="numAsc">Núm. Ascensores</label>
+              <input type="number" class="form-control ng-untouched ng-pristine ng-valid" min="0" id="numAsc" required 
+                [(ngModel)]="modelAscensor.numAscensores" name="numAsc" autofocus>
+              <div [hidden]="true" class="alert alert-danger">
+                El número de ascensores es necesario
+              </div>
+            </div>
+            <div>
+              <label for="tipoAsc">Tipo ascensor </label>
+              <ion-select id="tipoAsc" class="select form-control ng-valid ng-pristine ng-untouched"
+                [(ngModel)]="modelAscensor.tipoMotorAsc" interface="popover" name="tipoAsc"
+                (ionChange)="cambiaPotAscensor($event.srcElement)" required>
+                <ion-select-option class="option" *ngFor="let tipoPotAsc of tipoPotAscensor"
+                  [value]="tipoPotAsc">{{tipoPotAsc}}</ion-select-option>
+              </ion-select>
+
+              <input type="number" class="form-control ng-valid ng-untouched" id="potAsc" value='kW'
+                [(ngModel)]="modelAscensor.potenciaMotorAsc" name="potAsc" min="0" readonly required>
+              <ion-select id="medPotMotorAsc" required name="selMedPotAsc" interface="popover"
+                [(ngModel)]="modelAscensor.medidaPotencia" [disabled]=true>
+                <ion-select-option *ngFor="let medPot of medidorPotencia"
+                  [value]="medPot">{{medPot}}</ion-select-option>
+              </ion-select>
+
+
+            </div>
+          </ion-item>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-success" [disabled]="!formAscensor.form.valid">Agregar
+        Ascensor<ion-ripple-effect></ion-ripple-effect></button>
+    </form>
+  </section>
+
+  <section class="flex-container boxGMotor">
+
+    <form (ngSubmit)="agregarGrupoMotor()" #formGrupoMotor="ngForm">
+      <fieldset>
+        <legend>Grupo Motor</legend>
+
+        <div class="form-group">
+          <ion-item>
+            <label for="numGMotor">Núm. Motores</label>
+            <input type="number" min="0" class="form-control ng-untouched ng-pristine ng-valid" id="numGMotor" required
+              [(ngModel)]="modelGMotor.numGMotores" name="numGMotor">
+          </ion-item>
+          <ion-item>
+            <label for="potGMotor">Potencia Gr Motor:</label>
+            <input type="number" class="form-control ng-valid ng-pristine ng-untouched" min="0" id="potGMotor"
+              [(ngModel)]="modelGMotor.potenciaGMotor" name="potGMotor" required>
+            <ion-select id="medPotMotorGM" class="form-control ng-valid ng-pristine ng-untouched" placeholder="kW" required
+            [(ngModel)]="modelGMotor.medidaPotencia" name="medPotMotorGM" interface="popover" >
+              <ion-select-option *ngFor="let medPotGM of medidorPotencia"
+                [value]="medPotGM">{{medPotGM}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-success" [disabled]="!formGrupoMotor.form.valid">Agregar grupo motor</button>
+      
+    </form>
+  </section>
+
+  <section class="flex-container boxAlumbrado">
+
+    <form (ngSubmit)="agregarAlumbrado()" #formAlumbrado="ngForm">
+      <fieldset>
+        <legend>Alumbrado</legend>
+
+        <div  id="divAlumbrado" class="form-group">
+          <ion-item>
+            <label for="mtsAlumbrado">M2 Alumbrado:</label>
+            <input type="number" min="0" class="form-control ng-untouched ng-pristine ng-valid" id="mtsAlumbrado" required
+              [(ngModel)]="modelAlumbrado.mtsAlumbrado" name="mtsAlumbrado" placeholder="mts alumbrado" title="mts alumbrado">
+            
+              <label for="selAlumbrado"> X </label>
+          <ion-select id="selAlumbrado" class="form-control ng-valid ng-pristine ng-untouched"  placeholder="15W/m2 Incandescia Portal y comunes"
+            [(ngModel)]="modelAlumbrado.tipoAlumbrado" name="potAlumPortal" interface="popover" (ionchange)="cambiaPotAlumPortal($event.srcElement)">
+              <ion-select-option *ngFor="let potAlumP of potenciasAlumbradoPortal"
+                [value]="potAlumP">{{potAlumP.nombreAlum}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item >
+            <label for="numLamp">Num Lamparas:</label>
+            <input type="number" class="form-control ng-valid ng-pristine ng-untouched" value="0" min="0" id="numLamp" [(ngModel)]="modelAlumbrado.numLamparas" name="numLamp" >
+            <label for="potLamp">Potencia Lamparas:</label>
+            <input type="number"  min="0" id="potLamp" [(ngModel)]="modelAlumbrado.potLamparas" placeholder="potencia lampara"
+           class="form-control ng-valid ng-pristine ng-untouched" name="potLamp" title="Potencia de la lampara en w/kW">
+          
+            <ion-select id="selMedidaPotenciaAlum" class="form-control ng-valid ng-pristine ng-untouched" placeholder="W" 
+            [(ngModel)]="modelAlumbrado.medidaPotencia" name="selMedidaPotenciaAlum" interface="popover" >
+            <ion-select-option value="W">W</ion-select-option>
+            <ion-select-option value="kW">kW</ion-select-option>
+            </ion-select>
+<!--
+            <ion-checkbox  name="lampFluorescente"  justify="end"  labelPlacement="fixed" alignment="center" [(ngModel)]="this.modelAlumbrado.lampFluorescente">Fluorescente / Lamp de descarga x 1.8</ion-checkbox>
+   -->
+            <ion-select id="tipoLamparas"  name="lampFluorescente" class="form-control ng-valid ng-pristine ng-untouched" placeholder="Incadescente"  [(ngModel)]="modelAlumbrado.lampFluorescente">
+              <ion-select-option [value]="false">Incadescente</ion-select-option>
+              <ion-select-option [value]="true" >Fluorescente / Lamp de descarga x 1.8</ion-select-option>
+            </ion-select> 
+          </ion-item>
+
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-success" [disabled]="!formAlumbrado.form.valid">Agregar alumbrado</button>
+      
+    </form>
+  </section> 
+  
+  <div [hidden]="!submitted">
+
+    <h2>Lista servicios generales:</h2>
+    
+    
+     
+
+<div #listadoAsc >
+  <ion-grid>
+    
+      @for (ascItem of this.previsionesService.listaAscensores(); track ascItem.id) {
+        <ion-row>
+      <ion-col >
+        <img alt="Icono Ascensor" src="../../../assets/icon/ascensor.png" height="50px" class="ion-float-right" />
+       <p> {{ascItem.numAscensores}} ascensores tipo {{ascItem.tipoMotorAsc}} de {{ascItem.potenciaMotorAsc}}.
+        Total {{ascItem.totalpotenciakw |number}} kW.</p>
+        <div class="btn ion-button btnEliminar" (click)="this.previsionesService.eliminaAscensor(ascItem)"><ion-icon
+            name="trash"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+      } @empty {
+      <li>No hay ningún ascensor definido.</li>
+      }
+    
+  </ion-grid>
+
+     
+    </div>
+  </div>
+
+  <!---Listado de grupo motor  -->
+  <ion-grid>
+    
+      @for (gmItem of this.previsionesService.listaGMotor(); track gmItem.id) {
+        <ion-row>
+      <ion-col>
+        <img alt="Icono Grupo Motor" src="../../../assets/icon/grupomotor3.png" height="50px" class="ion-float-right" />
+        {{gmItem.numGMotores}} grupo motor  de {{gmItem.potenciaGMotor}} {{gmItem.medidaPotencia}}.
+        Total {{gmItem.totalpotenciakw |number}} kW.
+        <div class="btn ion-button btnEliminar"
+            (click)="this.previsionesService.eliminaGrupoMotor(gmItem)"><ion-icon name="trash"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    } @empty {
+      <li>No hay ningún grupo motor definido.</li>
+      }
+  
+  </ion-grid>
+   <!---Listado de alumbrado  -->
+  <ion-grid>
+   
+      @for (itemAlum of this.previsionesService.listaAlumbrado(); track itemAlum.id) {
+        <ion-row>
+          <ion-col>
+        <img alt="Icono Alumbrado" src="../../../assets/icon/Alumbrado1.png" height="50px" class="ion-float-left" />
+        {{itemAlum.mtsAlumbrado}} mts de {{itemAlum.tipoAlumbrado!.potAlum}} {{itemAlum.tipoAlumbrado!.nombreAlum!}} <br>
+        {{itemAlum.numLamparas}} lamparas de {{itemAlum.potLamparas}}{{itemAlum.medidaPotencia}} 
+        
+
+        Total {{itemAlum.totalPotenciaAlumkW! |number}} kW.
+        <div class="btn ion-button btnEliminar"
+            (click)="this.previsionesService.eliminaAlumbrado(itemAlum)"><ion-icon name="trash"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    } @empty {
+      <li>No hay ningún alumbrado definido.</li>
+      }
+   
+  </ion-grid>
+</ion-content>

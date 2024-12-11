@@ -1,0 +1,10 @@
+{
+  "appId": "apppcve.atwebpages.com",
+  "appName": "apppcve",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
