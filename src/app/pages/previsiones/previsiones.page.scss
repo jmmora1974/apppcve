@@ -1,16 +1,29 @@
 
 #secCabecera{
-    position: sticky ;
-    z-index: 1000;
-    top: 0;
+  position: sticky ;
+  z-index: 1000;
+  top: 0;
+  
+}
+
+#gripCabecera {
+  background-color:  #abddc1;
+  background: linear-gradient(135deg,var(--ion-color-medium), var(--ion-color-light));
+  
+  display: inline-block;
+  width: 100%;
+  ion-item{
+    text-align:  center;
+   
+  }
+  ion-col{
+    background-color: transparent;
+    border: 1px solid #07160f ;
+    border-radius: 3px;
+    text-align:  center;
+    margin: auto;
+    justify-content:  center;
     
   }
 
-  #gripCabecera {
-    background-color:  var(--ion-color-light);;
-    display: inline-block;
-    width: 100%;
-    ion-col{
-      background-color: inherit;
-    }
-  }
+}

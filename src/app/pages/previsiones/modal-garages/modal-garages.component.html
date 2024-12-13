@@ -68,7 +68,7 @@
     @for (garItem of this.previsionesService.listaGarages(); track garItem.id) {
     <ion-row>
       <ion-col>
-        <img alt="Icono Garage" src="../../../../assets/garaje.png" height="50px" class="ion-float-right" />
+        <img alt="Icono Garage" src="../../../../assets/garaje.png" height="50px" class="-right" />
         <p> {{garItem.numPlantas}} plantas de {{garItem.mtsGarage}} mts2 con Potencia de {{garItem.potGarage}} kW.
           Con {{this.previsionesService.numPlazasPkn()}} plazas de parking.</p>
         <h5> Total {{garItem.totalPotenciaGaragekW |number}} kW.</h5>

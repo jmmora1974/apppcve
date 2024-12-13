@@ -2,7 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, Component, inject, OnInit, NO_ERRORS_SCHEMA, NgM
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonGrid, IonRow, IonIcon,IonButton, IonPopover, IonImg, IonAccordion, IonInput, IonLabel  } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonGrid, IonRow, IonIcon,IonButton, IonPopover, IonImg, IonAccordionGroup ,IonAccordion, IonInput, IonLabel  } from '@ionic/angular/standalone';
 import { PrevisionesService } from '../../services/previsiones.service';
 import { IAlumbrado } from '../../models/ialumbrado';
 import { IAscensor } from '../../models/iascensor';
@@ -25,11 +25,10 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./previsiones.page.scss'],
   standalone: true,
   schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   imports: [IonRow, IonGrid, IonItem, IonGrid, IonRow, IonIcon, IonContent,
-    IonHeader, IonTitle, IonToolbar, FormsModule, CommonModule, IonButton,IonPopover,IonImg, IonAccordion,IonInput, IonLabel ]
+    IonHeader, IonTitle, IonToolbar, FormsModule, CommonModule, IonButton,IonPopover,IonImg,IonAccordionGroup , IonAccordion, IonLabel ]
 })
 
 export class PrevisionesPage  implements OnInit  {
